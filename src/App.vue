@@ -4,22 +4,25 @@
 // const arrayColor = ["blue", "green", "red"];
 // const active = true;
 // const arrayFruits = ["apple", "banana", "orange", "grapes", "pear"];
-const name = "Vue 3";
+const name = "Dynamic Vue 3";
 const arrayFrutas = [
   {
     name: "Manzana",
     price: "$1.00",
     description: "Una manzana",
+    stock: 0,
   },
   {
     name: "Pera",
     price: "$2.00",
     description: "Una pera",
+    stock: 10,
   },
   {
     name: "Naranja",
     price: "$3.00",
     description: "Una naranja",
+    stock: 20,
   },
 ];
 </script>
@@ -28,9 +31,9 @@ const arrayFrutas = [
   <div>
     <h1>Welcome to {{ name }}</h1>
     <ul>
-      <li v-for="fruit in arrayFrutas" :key="fruit.name">
-        {{ fruit.name }} - {{ fruit.price }}
-      </li>
+      <template v-for="item in arrayFrutas" :key="item.name">
+        <li v-if="item.stock > 0">{{ item.name }} - {{ item.price }}</li>
+      </template>
     </ul>
   </div>
   <!-- 
