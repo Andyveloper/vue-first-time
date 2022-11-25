@@ -1,47 +1,43 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+<script setup>
+import { ref } from "vue";
+const name = "Dynamic Vue 3";
+const counter = ref(0);
+const increment = () => {
+  counter.value++;
+};
+const decrement = () => {
+  counter.value--;
+};
+
+const reset = () => {
+  counter.value = 0;
+};
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
+  <main @click.right.prevent>
+    <h1>Welcome to {{ name }}</h1>
+    <div v-if="counter < 0">
+      <h2 :class="'negative'">{{ counter }}</h2>
     </div>
-  </header>
-
-  <main>
-    <TheWelcome />
+    <div v-else-if="counter > 0">
+      <h2 :class="'positive'">{{ counter }}</h2>
+    </div>
+    <div v-else>
+      <h2>{{ counter }}</h2>
+    </div>
+    <button @click="increment">Increment</button>
+    <button @click="decrement">Decrement</button>
+    <button @click="reset">Reset</button>
   </main>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
+<style lang="scss">
+.positive {
+  color: green;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.negative {
+  color: red;
 }
 </style>
