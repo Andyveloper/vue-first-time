@@ -1,19 +1,43 @@
 <script setup>
+import { ref } from "vue";
 const name = "Dynamic Vue 3";
+const counter = ref(0);
+const increment = () => {
+  counter.value++;
+};
+const decrement = () => {
+  counter.value--;
+};
 
-// methods
-const handleClick = (message) => {
-  console.log(message);
+const reset = () => {
+  counter.value = 0;
 };
 </script>
 
 <template>
   <main @click.right.prevent>
     <h1>Welcome to {{ name }}</h1>
-    <button @click.right.prevent="handleClick('text right')">
-      Push me right
-    </button>
-    <button @click.middle="handleClick('text middle')">Push me middle</button>
-    <button @click="handleClick('text left')">Push me left</button>
+    <div v-if="counter < 0">
+      <h2 :class="'negative'">{{ counter }}</h2>
+    </div>
+    <div v-else-if="counter > 0">
+      <h2 :class="'positive'">{{ counter }}</h2>
+    </div>
+    <div v-else>
+      <h2>{{ counter }}</h2>
+    </div>
+    <button @click="increment">Increment</button>
+    <button @click="decrement">Decrement</button>
+    <button @click="reset">Reset</button>
   </main>
 </template>
+
+<style lang="scss">
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
+}
+</style>
