@@ -30,7 +30,7 @@ const addNumber = () => {
     return a - b;
   });
 };
-const existingNumber = computed(() => {
+const disableBtn = computed(() => {
   if (favoriteNumbers.value.includes(counter.value)) {
     return true;
   } else {
@@ -48,7 +48,7 @@ const existingNumber = computed(() => {
     <button @click="increment">Increment</button>
     <button @click="decrement">Decrement</button>
     <button @click="reset">Reset</button>
-    <button @click="addNumber" :disabled="existingNumber">Add number</button>
+    <button @click="addNumber" :disabled="disableBtn">Add number</button>
     <div>
       <h2>Favorite Numbers List</h2>
       <ul>
