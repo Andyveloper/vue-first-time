@@ -4,7 +4,7 @@ Counter List
 
 ## Deployment URL
 
-- [COUNTERLiST](https://budgetize-app-andyveloper.herokuapp.com/)
+- [COUNTERLiST](https://number-counter-list-vue.netlify.app/)
 
 ## Built With
 
