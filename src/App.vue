@@ -22,6 +22,21 @@ const classCounter = computed(() => {
     return "zero";
   }
 });
+
+const favoriteNumbers = ref([]);
+const addNumber = () => {
+  favoriteNumbers.value.push(counter.value);
+  favoriteNumbers.value.sort((a, b) => {
+    return a - b;
+  });
+};
+const existingNumber = computed(() => {
+  if (favoriteNumbers.value.includes(counter.value)) {
+    return true;
+  } else {
+    return false;
+  }
+});
 </script>
 
 <template>
@@ -33,6 +48,13 @@ const classCounter = computed(() => {
     <button @click="increment">Increment</button>
     <button @click="decrement">Decrement</button>
     <button @click="reset">Reset</button>
+    <button @click="addNumber" :disabled="existingNumber">Add number</button>
+    <div>
+      <h2>Favorite Numbers List</h2>
+      <ul>
+        <li v-for="numbers in favoriteNumbers" :key="numbers">{{ numbers }}</li>
+      </ul>
+    </div>
   </main>
 </template>
 
