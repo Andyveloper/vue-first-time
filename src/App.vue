@@ -40,19 +40,29 @@ const disableBtn = computed(() => {
 </script>
 
 <template>
-  <main @click.right.prevent>
+  <main class="container text-center mt-3" @click.right.prevent>
     <h1>Welcome to {{ name }}</h1>
     <div>
       <h2 :class="classCounter">{{ counter }}</h2>
     </div>
-    <button @click="increment">Increment</button>
-    <button @click="decrement">Decrement</button>
-    <button @click="reset">Reset</button>
-    <button @click="addNumber" :disabled="disableBtn">Add number</button>
+    <div class="btn-group">
+      <button class="btn btn-success" @click="increment">Increment</button>
+      <button class="btn btn-danger" @click="decrement">Decrement</button>
+      <button class="btn btn-secondary" @click="reset">Reset</button>
+      <button class="btn btn-primary" @click="addNumber" :disabled="disableBtn">
+        Add number
+      </button>
+    </div>
     <div>
-      <h2>Favorite Numbers List</h2>
-      <ul>
-        <li v-for="numbers in favoriteNumbers" :key="numbers">{{ numbers }}</li>
+      <h2 class="mt-4">Favorite Numbers List</h2>
+      <ul class="list-group mt-2">
+        <li
+          class="list-group-item"
+          v-for="numbers in favoriteNumbers"
+          :key="numbers"
+        >
+          {{ numbers }}
+        </li>
       </ul>
     </div>
   </main>
